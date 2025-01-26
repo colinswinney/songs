@@ -18,7 +18,7 @@ import {
 	getOptionsChordQuality,
 	getOptionsChordExtension,
 	getOptionsSectionTitle
-} from "../../helpers/get-options";
+} from "../../utils/get-options";
 
 /**
  * Original Key.
