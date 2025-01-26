@@ -7,12 +7,12 @@ import { Text } from "@chakra-ui/react";
  * Internal dependencies.
  */
 import { Chord as ChordType } from "../../sanity.types";
-// import {
-// 	getOptionsChordNote,
-// 	getOptionsChordFlatSharp,
-// 	getOptionsChordQuality,
-// 	getOptionsChordExtension,
-// } from "type-options"
+import {
+	getOptionsChordNote,
+	getOptionsChordFlatSharp,
+	getOptionsChordQuality,
+	getOptionsChordExtension,
+} from "@/utils/get-options";
 
 export default function Chord({ chord }: { chord: ChordType }) {
 
@@ -27,82 +27,15 @@ export default function Chord({ chord }: { chord: ChordType }) {
 	const splitQuality = chord.splitQuality;
 	const splitExtension = chord.splitExtension;
 
-	// const displayNote = getOptionsChordNote().find((n) => n.slug === note)?.display;
+	const displayNote = getOptionsChordNote().find((n) => n.slug === note)?.display;
+	const displayFlatSharp = getOptionsChordFlatSharp().find((fs) => fs.slug === flatSharp)?.display;
+	const displayQuality = getOptionsChordQuality().find((q) => q.slug === quality)?.display;
+	const displayExtension = getOptionsChordExtension().find((e) => e.slug === extension)?.display;
 
-	const handleFlatSharp = (flatSharp: string | undefined) => {
-
-		if (!flatSharp) {
-			return "";
-		}
-
-		switch (flatSharp) {
-			case "flat":
-				return "♭";
-			case "sharp":
-				return "♯";
-			case "doubleFlat":
-				return "♭♭";
-			case "doubleSharp":
-				return "♯♯";
-			default:
-		}
-	};
-
-
-	const handleModifier = (modifier: string | undefined) => {
-
-		if (!modifier) {
-			return "";
-		}
-
-		switch (modifier) {
-			case "major":
-				return "M";
-			case "major-six":
-				return "6";
-			case "major-six-nine":
-				return "6/9";
-			case "major-seven":
-				return "Δ";
-			case "major-nine":
-				return "Maj9";
-			case "major-eleven":
-				return "Maj11";
-			case "major-thirteen":
-				return "Maj13";
-			case "suspended-two":
-				return "sus2";
-			case "suspended-four":
-				return "sus4";
-			case "minor":
-				return "m";
-			case "minor-six":
-				return "m6";
-			case "minor-seven":
-				return "m7";
-			case "minor-nine":
-				return "m9";
-			case "minor-eleven":
-				return "m11";
-			case "minor-thirteen":
-				return "m13";
-			case "minor-major-seven":
-				return "mΔ";
-			case "dominant-seven":
-				return "7";
-			case "dominant-nine":
-				return "9";
-			case "dominant-thirteen":
-				return "13";
-			case "augmented":
-				return "+";
-			case "diminished":
-				return "°";
-			case "half-diminished":
-				return "ø";
-			default:
-		}
-	}
+	const displaySplitNote = getOptionsChordNote().find((n) => n.slug === splitNote)?.display;
+	const displaySplitFlatSharp = getOptionsChordFlatSharp().find((fs) => fs.slug === splitFlatSharp)?.display;
+	const displaySplitQuality = getOptionsChordQuality().find((q) => q.slug === splitQuality)?.display;
+	const displaySplitExtension = getOptionsChordExtension().find((e) => e.slug === splitExtension)?.display;
 
 	return (
 		<Text
@@ -113,15 +46,15 @@ export default function Chord({ chord }: { chord: ChordType }) {
 			textDecor={splitChord ? "underline" : "none"}
 			transform={flatSharp ? "translateX(-1em)" : "none"}
 		>
-			{flatSharp && <Text as="span">{handleFlatSharp(flatSharp)}</Text>}
+			{flatSharp && <Text as="span">{displayFlatSharp}</Text>}
 			<Text as="span" textStyle="4xl" fontWeight="700">
-				{note}
+				{displayNote}
 			</Text>
 
 			{quality && (
 				<Text as="sup" verticalAlign="super" fontSize="0.8em">
-					{quality}
-					{extension && handleModifier(extension)}
+					{displayQuality}
+					{displayExtension}
 				</Text>
 			)}
 			{splitChord && (
@@ -129,14 +62,14 @@ export default function Chord({ chord }: { chord: ChordType }) {
 					<Text as="span" textStyle="4xl" fontWeight="700">
 						&nbsp;&nbsp;
 						{splitFlatSharp && (
-							<Text as="span">{handleFlatSharp(splitFlatSharp)}</Text>
+							<Text as="span">{displaySplitFlatSharp}</Text>
 						)}
-						{splitNote}
+						{displaySplitNote}
 					</Text>
 					{splitQuality && (
 						<Text as="sup" verticalAlign="super" fontSize="0.8em">
-							{splitQuality}
-							{handleModifier(splitExtension)}
+							{displaySplitQuality}
+							{displaySplitExtension}
 						</Text>
 					)}
 				</Text>

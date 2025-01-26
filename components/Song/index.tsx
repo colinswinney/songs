@@ -11,6 +11,7 @@ import { PortableText } from "@portabletext/react";
 import Chord from "@/components/Chord";
 import { H3 } from "@/components/Heading";
 import { Chord as ChordType, Line as LineType } from "@/sanity.types";
+import { getOptionsSectionTitle } from "@/utils/get-options";
 
 export function Section({ children, ...rest }: { children: React.ReactNode }) {
 	return (
@@ -26,9 +27,7 @@ export function SectionTitle({ id, title }: { id: string; title: string | undefi
 		return null;
 	}
 
-	const sectionTitle: string =
-		title.charAt(0).toUpperCase() +
-		title.slice(1);
+	const sectionTitle = getOptionsSectionTitle().find((t) => t.slug === title)?.display;
 
 	return (
 		<H3 id={id} css={{ color: "fg.muted", fontStyle: "italic" }}>

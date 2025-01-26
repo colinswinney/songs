@@ -360,7 +360,6 @@ const sectionTitleOptions = getOptionsSectionTitle().map(({ display, slug }) => 
 export const sectionTitleType = defineType({
 	name: 'sectionTitle',
 	type: 'string',
-	initialValue: 'verse',
 	options: {
 		list: sectionTitleOptions,
 	},
@@ -370,65 +369,72 @@ export const sectionTitleType = defineType({
  * Section.
  */
 export const sectionType = defineType({
-	name: 'section',
-	type: 'object',
+	name: "section",
+	type: "object",
 	fields: [
 		{
-			name: 'title',
-			type: 'sectionTitle',
+			name: "title",
+			type: "sectionTitle",
+			initialValue: "verse",
 		},
 		{
-			name: 'repeatsSection',
-			type: 'object',
+			name: "repeatsSection",
+			type: "object",
 			fields: [
 				{
-					name: 'section',
-					type: 'sectionTitle',
+					name: "section",
+					type: "sectionTitle",
+					initialValue: "",
 				},
 				{
-					name: 'chords',
-					type: 'boolean',
+					name: "chords",
+					type: "boolean",
 					initialValue: false,
-					hidden: ({parent}) => (!parent?.section || parent?.section === '' ? true : false),
+					hidden: ({ parent }) =>
+						!parent?.section || parent?.section === "" ? true : false,
 				},
 				{
-					name: 'lyrics',
-					type: 'boolean',
+					name: "lyrics",
+					type: "boolean",
 					initialValue: false,
-					hidden: ({parent}) => (!parent?.section || parent?.section === '' ? true : false),
+					hidden: ({ parent }) =>
+						!parent?.section || parent?.section === "" ? true : false,
 				},
 			],
 		},
 		{
-			name: 'lines',
-			type: 'lines',
+			name: "lines",
+			type: "lines",
 		},
 		{
-			name: 'description',
-			type: 'array',
-			of: [{type: 'block'}],
+			name: "description",
+			type: "array",
+			of: [{ type: "block" }],
 		},
 	],
 	preview: {
 		select: {
-			title: 'title',
-			lines: 'lines',
+			title: "title",
+			lines: "lines",
 		},
-		prepare({title, lines}) {
-			const previewTitle = getOptionsSectionTitle().find((s) => s.slug === title)?.display || ''
-			let previewLines = ''
+		prepare({ title, lines }) {
+			const previewTitle =
+				getOptionsSectionTitle().find((s) => s.slug === title)?.display || "";
+			let previewLines = "";
 			if (lines !== undefined && lines[0].lyrics) {
-				previewLines = lines[0].lyrics[0].children[0].text
+				previewLines = lines[0].lyrics[0].children[0].text;
 				previewLines =
-					previewLines.length > 20 ? previewLines.substring(0, 50) + '...' : previewLines
+					previewLines.length > 20
+						? previewLines.substring(0, 50) + "..."
+						: previewLines;
 			}
 			return {
 				title: previewTitle,
 				subtitle: previewLines,
-			}
+			};
 		},
 	},
-})
+});
 
 /**
  * Song

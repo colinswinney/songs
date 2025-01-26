@@ -1,15 +1,20 @@
+/**
+ * External dependencies
+ */
 import React, { Fragment } from "react";
-import { sanityFetch } from "@/sanity/lib/live";
 import { notFound } from "next/navigation";
-import { Line, Slug, Section as SectionType } from "@/sanity.types";
-
-import { SONG_FULL_DISPLAY_QUERY } from "@/sanity/lib/queries";
 import { Grid, GridItem, List, Separator } from "@chakra-ui/react";
-import SiteLayout from "@/components/SiteLayout";
-import Link from "@/components/Link";
-import { H1 } from "@/components/Heading";
 
+/**
+ * Internal dependencies
+ */
+import { H1 } from "@/components/Heading";
+import Link from "@/components/Link";
+import SiteLayout from "@/components/SiteLayout";
 import * as S from "@/components/Song";
+import { sanityFetch } from "@/sanity/lib/live";
+import { SONG_FULL_DISPLAY_QUERY } from "@/sanity/lib/queries";
+import { Line, Slug, Section as SectionType } from "@/sanity.types";
 
 export async function generateMetadata({
 	params,
