@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { SanityLive } from "@/sanity/lib/live";
-import SiteFooter from "@/components/SiteFooter";
-import SiteHeader from "@/components/SiteHeader";
-import SiteMain from "@/components/SiteMain";
+import Footer from "@/components/AppLayout/Footer";
+import Header from "@/components/AppLayout/Header";
+import Main from "@/components/AppLayout/Main";
 import { Provider as ChakraProvider } from "@/components/ui/provider";
 import { AppSettingsProvider } from "@/context";
 import { Flex } from "@chakra-ui/react";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 	description: "A collection of songs.",
 };
 
-export default function SiteLayout({
+export default function Layout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
@@ -20,10 +20,11 @@ export default function SiteLayout({
 	return (
 		<ChakraProvider>
 			<AppSettingsProvider>
-				<Flex direction="column" minH="100vh" fontFamily="body">
-					<SiteHeader />
-					<SiteMain flex="1">{children}</SiteMain>
-					<SiteFooter />
+				{/** Note, can't set two minH so using style for progressive enhancement. */}
+				<Flex direction="column" minH="100dvh" fontFamily="body" css={{ flexDirection: "column", minHeight: "100vh", fontFamily: "body" }} style={{ minHeight: "100dvh" }}>
+					<Header />
+					<Main flex="1">{children}</Main>
+					<Footer />
 					<SanityLive />
 				</Flex>
 			</AppSettingsProvider>

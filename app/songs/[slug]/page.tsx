@@ -10,7 +10,7 @@ import { Grid, GridItem, List, Separator } from "@chakra-ui/react";
  */
 import { H1 } from "@/components/Heading";
 import Link from "@/components/Link";
-import SiteLayout from "@/components/SiteLayout";
+import AppLayout from "@/components/AppLayout";
 import * as S from "@/components/Song";
 import { sanityFetch } from "@/sanity/lib/live";
 import { SONG_FULL_DISPLAY_QUERY } from "@/sanity/lib/queries";
@@ -58,7 +58,7 @@ export default async function SongPage({
 	} = song;
 
 	return (
-		<SiteLayout>
+		<AppLayout>
 			<Grid templateColumns={{ base: "1fr", md: "1fr auto" }}>
 				<GridItem>
 					{title && <H1>{title}</H1>}
@@ -107,16 +107,23 @@ export default async function SongPage({
 
 							<S.SectionDescription description={description} />
 
+
+
 							{lines &&
 								lines.map((line: Line, index: number) => (
 									<Fragment key={index}>
 										<S.ChordLine chords={line.chords} />
+									</Fragment>
+								))}
+							{lines &&
+								lines.map((line: Line, index: number) => (
+									<Fragment key={index}>
 										<S.LyricLine lyrics={line.lyrics} />
 									</Fragment>
 								))}
 						</S.Section>
 					);
 				})}
-		</SiteLayout>
+		</AppLayout>
 	);
 }

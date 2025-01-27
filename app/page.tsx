@@ -2,7 +2,7 @@ import { sanityFetch } from "@/sanity/lib/live";
 import { Artist, Song } from "@/sanity.types";
 import { SONG_LINK_LIST_QUERY, ARTIST_LINK_LIST_QUERY } from "@/sanity/lib/queries";
 import { List } from "@chakra-ui/react";
-import SiteLayout from "@/components/SiteLayout";
+import AppLayout from "@/components/AppLayout";
 import Link from "@/components/Link";
 import { H1, H2 } from "@/components/Heading";
 
@@ -16,7 +16,7 @@ export default async function IndexPage() {
 	})) as { data: Pick<Artist, "_id" | "title" | "slug">[] };
 
 	return (
-		<SiteLayout>
+		<AppLayout>
 			<H1>Songs App</H1>
 			<H2>Songs</H2>
 			<List.Root>
@@ -36,6 +36,6 @@ export default async function IndexPage() {
 					</List.Item>
 				))}
 			</List.Root>
-		</SiteLayout>
+		</AppLayout>
 	);
 }

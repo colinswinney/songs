@@ -2,7 +2,7 @@ import { sanityFetch } from "@/sanity/lib/live";
 import { notFound } from "next/navigation";
 import { Slug } from "@/sanity.types";
 import { ARTIST_FULL_DISPLAY_QUERY } from "@/sanity/lib/queries";
-import SiteLayout from "@/components/SiteLayout";
+import AppLayout from "@/components/AppLayout";
 import Link from "@/components/Link";
 import { H1 } from "@/components/Heading";
 import { List } from "@chakra-ui/react";
@@ -45,7 +45,7 @@ export default async function ArtistPage({
 	const { title, songs } = artist;
 
 	return (
-		<SiteLayout>
+		<AppLayout>
 			{title && <H1>{title}</H1>}
 			{songs && (
 				<List.Root>
@@ -56,6 +56,6 @@ export default async function ArtistPage({
 					))}
 				</List.Root>
 			)}
-		</SiteLayout>
+		</AppLayout>
 	);
 }

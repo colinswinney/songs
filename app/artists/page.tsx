@@ -1,7 +1,7 @@
 import { sanityFetch } from "@/sanity/lib/live";
 import { Artist } from "@/sanity.types";
 import { ARTIST_LINK_LIST_QUERY } from "@/sanity/lib/queries";
-import SiteLayout from "@/components/SiteLayout";
+import AppLayout from "@/components/AppLayout";
 import Link from "@/components/Link";
 import { H1 } from "@/components/Heading";
 import { List } from "@chakra-ui/react";
@@ -12,7 +12,7 @@ export default async function ArtistsPage() {
 	})) as { data: Pick<Artist, "_id" | "title" | "slug">[] };
 
 	return (
-		<SiteLayout>
+		<AppLayout>
 			<H1>Artists</H1>
 			<List.Root>
 				{artists.map((artist) => (
@@ -21,6 +21,6 @@ export default async function ArtistsPage() {
 					</List.Item>
 				))}
 			</List.Root>
-		</SiteLayout>
+		</AppLayout>
 	);
 }

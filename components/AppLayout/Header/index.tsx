@@ -5,7 +5,7 @@ import { LuMoon, LuSun, LuSettings } from "react-icons/lu";
 import { useColorMode } from "@/components/ui/color-mode";
 import { Box, Flex, List } from "@chakra-ui/react";
 import Link from "@/components/Link";
-import SiteContainer from "@/components/SiteContainer";
+import SiteContainer from "@/components/AppLayout/Container";
 import ChordDisplayAs from "@/components/AppSettings";
 
 import { Button } from "@/components/ui/button";

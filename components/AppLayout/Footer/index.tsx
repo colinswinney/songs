@@ -1,8 +1,8 @@
 import { Box, Separator, Text } from "@chakra-ui/react";
-import SiteContainer from "../SiteContainer";
+import SiteContainer from "../Container";
 import Link from "@/components/Link"
 
-export default function SiteFooter() {
+export default function Footer() {
 	const currentYear = new Date().getFullYear();
 
 	return (
